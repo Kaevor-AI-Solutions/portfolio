@@ -1,0 +1,200 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Vignette that lets the particle field breathe in the middle and fades it to
+   the page background at the edges. */
+.veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 48%,
+    rgba(10, 11, 13, 0) 0%,
+    rgba(10, 11, 13, 0.6) 58%,
+    #0a0b0d 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: kvBlink 2.6s ease-in-out infinite;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 88px;
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  max-width: 15ch;
+}
+
+.sub {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.cornerLeft,
+.cornerRight {
+  position: absolute;
+  bottom: 34px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.cornerLeft {
+  left: 48px;
+}
+
+.cornerRight {
+  right: 48px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.arrow {
+  display: inline-block;
+  animation: kvDown 2s ease-in-out infinite;
+}
+
+@media (max-width: 1279px) {
+  .title {
+    font-size: 72px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 620px;
+  }
+
+  .title {
+    font-size: 56px;
+  }
+
+  .sub {
+    font-size: 18px;
+  }
+
+  .cornerLeft {
+    left: 32px;
+  }
+
+  .cornerRight {
+    right: 32px;
+  }
+}
+
+/* 393px spec — hero drops to a fixed 620px band, left-aligned for readability. */
+@media (max-width: 767px) {
+  .hero {
+    height: 620px;
+    min-height: 0;
+    justify-content: flex-start;
+  }
+
+  .veil {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 11, 13, 0.5),
+      rgba(10, 11, 13, 0.2) 40%,
+      #0a0b0d 100%
+    );
+  }
+
+  .content {
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .status {
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .title {
+    font-size: 44px;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    max-width: none;
+  }
+
+  .sub {
+    font-size: 16px;
+  }
+
+  .actions {
+    margin-top: 8px;
+  }
+
+  .cornerLeft,
+  .cornerRight {
+    display: none;
+  }
+}

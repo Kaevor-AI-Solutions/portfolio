@@ -1,0 +1,299 @@
+/* ------------------------------------------------------------------
+   Kaevor AI Solutions — design tokens & base
+   Source of truth: design-portfolio/DESIGN.md + WEWA Portfolio Site.dc.html
+   ------------------------------------------------------------------ */
+
+:root {
+  /* Colour */
+  --bg-primary: #0a0b0d;
+  --bg-secondary: #121417;
+  --text-primary: #f2f3f5;
+  --text-muted: #8a8f98;
+  --accent: #3ed0c4;
+  --accent-secondary: #e8b85c;
+  --border: #22262b;
+
+  /* Type */
+  --font-display: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: 48px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+img,
+svg,
+canvas {
+  display: block;
+}
+
+/* ------------------------------------------------------------------
+   Section entrance — hidden until the reveal hook releases them.
+   ------------------------------------------------------------------ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+noscript [data-reveal],
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------------
+   Shared type / layout utilities
+   ------------------------------------------------------------------ */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.monoLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tag {
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.outcome {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+/* Primary CTA — solid accent, 2px radius, mono uppercase label. */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 16px 28px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.cta:hover {
+  color: var(--bg-primary);
+}
+
+.ghostLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 8px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.ghostLink:hover {
+  color: var(--text-primary);
+}
+
+/* ------------------------------------------------------------------
+   Keyframes
+   ------------------------------------------------------------------ */
+
+@keyframes kvBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes kvDown {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Responsive type scale — DESIGN.md §2
+   ------------------------------------------------------------------ */
+
+@media (max-width: 1023px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .cta {
+    padding: 15px 22px;
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .ghostLink {
+    font-size: 12px;
+  }
+
+  .outcome {
+    font-size: 12px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion — DESIGN.md §5 fallback row
+   ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

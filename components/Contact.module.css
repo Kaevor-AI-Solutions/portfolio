@@ -1,0 +1,166 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px var(--gutter);
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  align-items: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+}
+
+.text {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.infoStrong {
+  color: var(--text-primary);
+}
+
+.infoWarm {
+  padding-top: 10px;
+  color: var(--accent-secondary);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  padding-top: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fieldLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.input,
+.textarea {
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 17px;
+  transition: border-color 0.3s ease;
+}
+
+.textarea {
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.submit {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 16px 30px;
+}
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+@media (max-width: 1023px) {
+  .section {
+    min-height: 0;
+    padding: 96px var(--gutter);
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 72px var(--gutter);
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .form {
+    gap: 28px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 16px;
+  }
+
+  .submit {
+    align-self: stretch;
+    justify-content: center;
+    min-height: 48px;
+  }
+}
