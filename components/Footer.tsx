@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Logo from './Logo';
 import s from './Footer.module.css';
 
@@ -7,8 +8,7 @@ export default function Footer() {
       <div className={s.top}>
         <div className={s.brandCol}>
           <div className={s.brand}>
-            <Logo size={20} />
-            <span className={s.wordmark}>KAEVOR AI</span>
+            <Logo className={s.logo} />
           </div>
           <p className={s.blurb}>
             Applied AI and product engineering for teams that need real systems, not isolated
@@ -63,7 +63,15 @@ export default function Footer() {
       </div>
 
       <div className={s.bottom}>
-        <span>© 2026 Kaevor AI Solutions</span>
+        <span className={s.legal}>
+          <span>© 2026 Kaevor AI Solutions</span>
+          <Link href="/terms" className={s.legalLink}>
+            Terms
+          </Link>
+          <Link href="/privacy" className={s.legalLink}>
+            Privacy
+          </Link>
+        </span>
         <span>Sri Lanka · Founder-led</span>
       </div>
     </footer>

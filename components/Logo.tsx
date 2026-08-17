@@ -1,10 +1,26 @@
-/** Concentric-ring mark — the "flow settling into structure" motif in static form. */
-export default function Logo({ size = 22 }: { size?: number }) {
+import Image from 'next/image';
+
+/** Brand lockup — concentric-ring mark + KAEVOR AI wordmark. Light artwork: dark surfaces only. */
+const SRC = '/assets/application/dark-theme-logo-lockup.png';
+const RATIO = 1232 / 240; // intrinsic artwork dimensions
+
+export default function Logo({
+  height = 26,
+  className,
+  priority = false,
+}: {
+  height?: number;
+  className?: string;
+  priority?: boolean;
+}) {
   return (
-    <svg width={size} height={size} viewBox="0 0 22 22" fill="none" aria-hidden="true">
-      <circle cx="11" cy="11" r="10" stroke="#3ED0C4" strokeWidth="1.1" opacity=".3" />
-      <circle cx="11" cy="11" r="6.3" stroke="#3ED0C4" strokeWidth="1.1" opacity=".6" />
-      <circle cx="11" cy="11" r="2.3" fill="#3ED0C4" />
-    </svg>
+    <Image
+      src={SRC}
+      alt="Kaevor AI"
+      width={Math.round(height * RATIO)}
+      height={height}
+      className={className}
+      priority={priority}
+    />
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 import Reveal from '@/components/Reveal';
 import RevealLink from '@/components/RevealLink';
 import s from './case.module.css';
@@ -164,6 +165,8 @@ export default function ElectionCalculatorCase() {
           <span className={s.nextHint}>Production-oriented AI workflows →</span>
         </RevealLink>
       </section>
+
+      <Footer />
     </main>
   );
 }

@@ -104,18 +104,48 @@
   opacity: 0.7;
 }
 
+/* Honeypot. Kept out of the layout without `display:none`, which some bots skip. */
+.trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .submit {
   align-self: flex-start;
   margin-top: 8px;
   padding: 16px 30px;
 }
 
-.status {
+.submit:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.consent {
+  margin: -18px 0 0;
+  max-width: 46ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.status,
+.statusError {
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.statusError {
+  color: var(--accent-secondary);
+  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 1023px) {

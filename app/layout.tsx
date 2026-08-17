@@ -48,6 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      // globals.css sets `scroll-behavior: smooth`; this tells Next to suppress it during
+      // route transitions so a new page opens at the top instead of gliding there.
+      data-scroll-behavior="smooth"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>

@@ -22,14 +22,11 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 11px;
 }
 
-.wordmark {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.16em;
+.logo {
+  height: 22px;
+  width: auto;
 }
 
 .blurb {
@@ -64,11 +61,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.legal {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.legalLink {
+  color: var(--text-muted);
+  transition: color 0.25s ease;
+}
+
+.legalLink:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 1023px) {

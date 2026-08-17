@@ -1,19 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
+import { useActionState } from 'react';
 import Reveal from './Reveal';
+import { sendEnquiry } from '@/lib/actions';
+import { INITIAL_ENQUIRY_STATE } from '@/lib/enquiry';
 import { useMagnetic } from '@/lib/hooks';
 import s from './Contact.module.css';
 
 export default function Contact() {
   const submitRef = useMagnetic<HTMLButtonElement>();
-  const [sent, setSent] = useState(false);
-
-  // No submission endpoint is specified by the design — wire this to your handler.
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSent(true);
-  };
+  const [state, formAction, pending] = useActionState(sendEnquiry, INITIAL_ENQUIRY_STATE);
 
   return (
     <section id="contact" className={s.section}>
@@ -33,7 +30,7 @@ export default function Contact() {
           </div>
         </Reveal>
 
-        <Reveal as="form" index={1} className={s.form} onSubmit={onSubmit}>
+        <Reveal as="form" index={1} className={s.form} action={formAction}>
           <label className={s.field}>
             <span className={s.fieldLabel}>Name</span>
             <input className={s.input} type="text" name="name" placeholder="Your name" required />
@@ -61,13 +58,33 @@ export default function Contact() {
             />
           </label>
 
-          <button ref={submitRef} type="submit" className={`cta ${s.submit}`}>
-            Send it over →
+          {/*
+            Honeypot — off-screen, skipped by keyboard and screen readers. The name is
+            deliberately meaningless: browsers ignore `autocomplete="off"` on fields they
+            recognise, so anything like "company" gets autofilled from a saved profile and
+            every real submission looks like a bot.
+          */}
+          <div className={s.trap} aria-hidden="true">
+            <label htmlFor="kv-hp">Leave this field empty</label>
+            <input id="kv-hp" type="text" name="kv_hp" tabIndex={-1} autoComplete="off" />
+          </div>
+
+          <button ref={submitRef} type="submit" className={`cta ${s.submit}`} disabled={pending}>
+            {pending ? 'Sending…' : 'Send it over →'}
           </button>
 
-          {sent && (
-            <span className={s.status} role="status">
-              Thanks — we&apos;ll come back to you shortly.
+          <p className={s.consent}>
+            By sending this you agree to our <Link href="/terms">Terms</Link> and{' '}
+            <Link href="/privacy">Privacy Policy</Link>. Please don&apos;t include confidential
+            information.
+          </p>
+
+          {state.status !== 'idle' && (
+            <span
+              className={state.status === 'ok' ? s.status : s.statusError}
+              role={state.status === 'ok' ? 'status' : 'alert'}
+            >
+              {state.message}
             </span>
           )}
         </Reveal>

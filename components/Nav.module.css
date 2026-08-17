@@ -28,7 +28,6 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 11px;
   color: var(--text-primary);
 }
 
@@ -36,11 +35,9 @@
   color: var(--text-primary);
 }
 
-.wordmark {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.16em;
+.logo {
+  height: 26px;
+  width: auto;
 }
 
 .links {
@@ -174,8 +171,8 @@
     border-bottom-color: var(--border);
   }
 
-  .wordmark {
-    font-size: 14px;
+  .logo {
+    height: 22px;
   }
 
   .navCta {

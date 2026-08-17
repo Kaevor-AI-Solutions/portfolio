@@ -47,8 +47,7 @@ export default function Nav() {
     <>
       <nav ref={navRef} className={s.nav} data-scrolled="false" data-open={String(open)}>
         <Link href="/" className={s.brand} onClick={() => setOpen(false)}>
-          <Logo />
-          <span className={s.wordmark}>KAEVOR AI</span>
+          <Logo className={s.logo} priority />
         </Link>
 
         <div className={s.links}>
